@@ -5,5 +5,6 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "pipwin>=0.5.2",
     "speechrecognition>=3.16.0",
 ]
