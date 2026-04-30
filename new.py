@@ -13,8 +13,8 @@ print("USER SPOKE: " + text)
 engine = pyttsx3.init()
 engine.setProperty('rate', 120) 
 
-def date_time():
-    #date and time function
+def date_time():  #date and time function
+
     now_date = datetime.now()
     date_now = now_date.strftime("%d-%m-%Y")
     now_time = datetime.now()
@@ -24,6 +24,7 @@ def date_time():
 
     if "date" in text:
         print(date_now)
+        engine.say(date_now)
         engine.say("date is here:")
         print("----Here is your Date----")
     else:
@@ -31,19 +32,19 @@ def date_time():
         engine.say("time is here:")
         print("----Here is your Time----")
 
-things = {
-    "phone": "Here is your phone",
-    "tv": "Turning on the TV",
-    "bag": "Here is your bag"
-}
+# things = {
+#     "phone": "Here is your phone",
+#     "tv": "Turning on the TV",
+#     "bag": "Here is your bag"
+# }
 
-for thing in things:
-    if thing in text:
-        print("FOUND IT")
-        engine.say(things[thing])
+# for thing in things:
+#     if thing in text:
+#         print("FOUND IT")
+#         engine.say(things[thing])
     
-else:
-        print("Not Found")
+# else: 
+#         print("Not Found")
 
 engine.runAndWait()
 
