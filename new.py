@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import pyttsx3
 from datetime import datetime
+import webbrowser as wab
 
 #stt statement
 r = sr.Recognizer()
@@ -12,6 +13,16 @@ print("USER SPOKE: " + text)
 # tts statement
 engine = pyttsx3.init()
 engine.setProperty('rate', 120) 
+
+def wab_browser(): #wab browser function
+    if "YouTube" in text:
+        wab.open("https://www.youtube.com/")
+        print("----Youtube opened----")
+        engine.say("Youtube opened")
+    elif "Google" in text:
+        wab.open("https://www.google.com/")
+        print("----Google opened----")
+        engine.say("Google opened")
 
 def date_time():  #date and time function
 
@@ -27,7 +38,7 @@ def date_time():  #date and time function
         engine.say(date_now)
         engine.say("date is here:")
         print("----Here is your Date----")
-    else:
+    elif "time" in text:
         print(time_now)
         engine.say("time is here:")
         print("----Here is your Time----")
@@ -48,4 +59,5 @@ def date_time():  #date and time function
 
 engine.runAndWait()
 
+wab_browser()
 date_time()
