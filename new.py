@@ -8,7 +8,6 @@ r = sr.Recognizer()
 with sr.Microphone() as source:
     audio = r.listen(source)
 text = r.recognize_google(audio)
-# temp = r.recognize_google(audio)
 print("USER SPOKE: " + text)
 
 # tts statement
@@ -17,29 +16,33 @@ engine.setProperty('rate', 120)
 
 # web browser function
 def web_browser():
-    
     list_of_web_page = ["YouTube", "Google", "monkey type", "chat GPT", "Gemini"]
     
     for web_page in list_of_web_page:
         if "YouTube" in text:
-            # if "search" in text:
-                # web.open("https://www.youtube.com/results?search_query=" + "")
-                # print("hello")
-            # else:
-                web.open("https://www.youtube.com/")
-                print("----Youtube opened----")
-                engine.say("Youtube opened")
-                break
-                
+            if "search" in text:
+                print("Speak what you search: ")
+                search_recognizer = sr.Recognizer();
+                with sr.Microphone() as source:
+                    audio = search_recognizer.listen(source)
+                    what_to_search = search_recognizer.recognize_google(audio)
+                    searching = f"https://www.youtube.com/results?search_query={what_to_search}"
+
+                    
+                    web.open(searching)
+                    print("----Youtube opened----")
+                    engine.say("Youtube opened")
+                    break
+
         elif "Google" in text:
             # if "search" in text:
             #     web.open("" + temp)
             #     print("hello")
             # else
-                web.open("https://www.google.com/")
-                print("----Google opened----")
-                engine.say("Google opened")
-                break
+            web.open("https://www.google.com/")
+            print("----Google opened----")
+            engine.say("Google opened")
+            break
         elif "monkey type" in text:
             web.open("https://monkeytype.com/")
             print("----MonkeyType opened----")
