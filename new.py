@@ -38,14 +38,19 @@ def web_browser():
                     break
 
         elif "Google" in text:
-            # if "search" in text:
-            #     web.open("" + temp)
-            #     print("hello")
-            # else
-            web.open("https://www.google.com/")
-            print("----Google opened----")
-            engine.say("Google opened")
-            break
+            if "search" in text:
+                print("Speak what you search: ")
+                search_recognizer = sr.Recognizer();
+                with sr.Microphone() as source:
+                    audio = search_recognizer.listen(source)
+                    what_to_search = search_recognizer.recognize_google(audio)
+                    searching = f"http://www.google.com/search?q={what_to_search}"
+
+                    web.open("https://www.google.com/")
+                    print("----Google opened----")
+                    engine.say("Google opened")
+                    break
+
         elif "monkey type" in text:
             web.open("https://monkeytype.com/")
             print("----MonkeyType opened----")
