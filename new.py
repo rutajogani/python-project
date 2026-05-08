@@ -4,47 +4,45 @@ from datetime import datetime
 import webbrowser as web
 
 #stt statement
-# def listen(text):
-r = sr.Recognizer()
-with sr.Microphone() as source:
-    audio = r.listen(source)
-text = r.recognize_google(audio)
-#return text
-#listen()
-print("USER SPOKE: " + text)
+def listen():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+    text = r.recognize_google(audio)
+    print("USER SPOKE: " + text)
+    return text
+
+text = listen()
 
 # tts statement
 engine = pyttsx3.init()
 engine.setProperty('rate', 120) 
 
-# web browser function
-def web_browser():
+def web_browser(): # web browser function
+
     list_of_web_page = ["YouTube", "Google", "monkey type", "chat GPT", "Gemini"]
     
     for web_page in list_of_web_page:
         if "YouTube" in text:
             if "search" in text:
                 print("Speak what you search: ")
-                search_recognizer = sr.Recognizer();
-                with sr.Microphone() as source:
-                    audio = search_recognizer.listen(source)
-                    what_to_search = search_recognizer.recognize_google(audio)
-                    searching = f"https://www.youtube.com/results?search_query={what_to_search}"
+                what_to_search = listen()
+                searching = f"https://www.youtube.com/results?search_query={what_to_search}"
+                web.open(searching)
+                break
 
-                    
-                    web.open(searching)
-                    print("----Youtube opened----")
-                    engine.say("Youtube opened")
-                    break
+            web.open("https://www.youtube.com/")
+            print("----Youtube opened----")
+            engine.say("Youtube opened")
+            break
 
         elif "Google" in text:
             if "search" in text:
                 print("Speak what you search: ")
-                search_recognizer = sr.Recognizer();
-                with sr.Microphone() as source:
-                    audio = search_recognizer.listen(source)
-                    what_to_search = search_recognizer.recognize_google(audio)
-                    searching = f"http://www.google.com/search?q={what_to_search}"
+                what_to_search = listen()
+                searching = f"http://www.google.com/search?q={what_to_search}"
+                web.open(searching)
+                break
 
             web.open("https://www.google.com/")
             print("----Google opened----")
@@ -56,26 +54,26 @@ def web_browser():
             print("----MonkeyType opened----")
             engine.say("MonkeyType opened")
             break
+
         elif "chat GPT" in text:
             web.open("https://chatgpt.com/")
             print("----Chatgpt opened----")
             engine.say("Chatgpt opened")
             break
+
         elif "GitHub" in text:
             web.open("https://github.com/rutajogani")
             print("----Github opened----")
             engine.say("Github opened")
             break
+
         elif "Gemini" in text:
             web.open("https://gemini.google.com/app")
             print("----Gemini opened----")
             engine.say("Gemini opened")
             break
 
-    # if "search" in text:
-    #     temp = engine.say()
-
-def date_time():  #date and time function
+def date_time():  # date and time function
 
     now_date = datetime.now()
     date_now = now_date.strftime("%d-%m-%Y")
@@ -94,21 +92,30 @@ def date_time():  #date and time function
         engine.say("time is here:")
         print("----Here is your Time----")
 
-# things = {
-#     "phone": "Here is your phone",
-#     "tv": "Turning on the TV",
-#     "bag": "Here is your bag"
-# }
+def things(): # Home related things 
 
-# for thing in things:
-#     if thing in text:
-#         print("FOUND IT")
-#         engine.say(things[thing])
-    
-# else: 
-#         print("Not Found")
+    things = {
+        "phone": "Here is your phone",
+        "TV": "Turning on the TV",
+        "bag": "Here is your bag",
+        "fan": "Turn on your fan"
+    }
+
+    found = 0
+
+    for thing in things:
+        if thing in text:
+            print("FOUND IT")
+            engine.say(things[thing])
+            found = 1
+            break
+
+    if found == 0:
+        print("NOT FOUND")
+
 
 engine.runAndWait()
 
 web_browser()
 date_time()
+things()
