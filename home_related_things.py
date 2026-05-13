@@ -3,7 +3,7 @@ import pyttsx3
 engine = pyttsx3.init()
 engine.setProperty('rate', 120)
 
-def things(): # Home related things 
+def things(text): # Home related things 
 
     things = {
         "phone": "Here is your phone",
@@ -28,6 +28,5 @@ def things(): # Home related things
 
     if found == 0:
         print("NOT FOUND")
-
-engine.runAndWait()
+        engine.runAndWait()
 

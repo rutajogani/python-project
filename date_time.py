@@ -4,12 +4,11 @@ from datetime import datetime
 engine = pyttsx3.init()
 engine.setProperty('rate', 120) 
 
-def date_time():  # date and time function
-
-    now_time, now_date = datetime.now()
+def date_time(text):  # date and time function
+    now = datetime.now()
     
-    date_now = now_date.strftime("%d-%m-%Y")
-    time_now = now_time.strftime("%H:%M:%S")
+    date_now = now.strftime("%d-%m-%Y")
+    time_now = now.strftime("%H:%M:%S")
 
     date_time = ["date","time"]
 

@@ -1,10 +1,11 @@
+from listen import listen
 import webbrowser as web
 import pyttsx3
 
 engine = pyttsx3.init()
 engine.setProperty('rate', 120) 
 
-def web_browser(): # web browser function
+def web_browser(text): # web browser function
 
     list_of_web_page = ["YouTube", "Google", "monkey type", "chat GPT", "Gemini"]
     
