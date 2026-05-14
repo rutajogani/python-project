@@ -25,6 +25,7 @@ def web_browser(text): # web browser function
             web.open("https://www.youtube.com/")
             print("----Youtube opened----")
             engine.say("Youtube opened")
+            print("hello")
             engine.runAndWait()
             break
 
