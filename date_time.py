@@ -23,7 +23,6 @@ def date_time(text):  # date and time function
         print(time_now)
         engine.say("Current time is")
         engine.say(time_now)
-        engine.runAndWait()
         print("----Here is your Time----")
 
-
+engine.runAndWait()
